@@ -1,6 +1,8 @@
 package com.example.StreamAPIAndOptional;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public interface EmployeeService {
 
@@ -10,5 +12,5 @@ public interface EmployeeService {
 
     ArrayList<Employee> departmentsAll(int departmentId);
 
-    ArrayList<Employee> All();
+    Map<Integer, List<Employee>> All();
 }

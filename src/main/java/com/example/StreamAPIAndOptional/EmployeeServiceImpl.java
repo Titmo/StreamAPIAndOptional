@@ -2,9 +2,8 @@ package com.example.StreamAPIAndOptional;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,8 +41,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public ArrayList<Employee> All() {
-        return (ArrayList<Employee>) staff;
+    public Map<Integer, List<Employee>> All() {
+        Map<Integer, List<Employee>> all = staff.stream()
+                .collect(Collectors.toMap(Employee::getDepartment,staff::get));
+        return all;
     }
 
 }

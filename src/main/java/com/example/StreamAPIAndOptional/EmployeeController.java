@@ -2,6 +2,8 @@ package com.example.StreamAPIAndOptional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 
@@ -33,7 +35,7 @@ public class EmployeeController implements EmployeeService {
     }
     @GetMapping("/All")
     @Override
-    public ArrayList<Employee> All() {
+    public Map<Integer, List<Employee>> All() {
         return employeeService.All();
     }
 }
