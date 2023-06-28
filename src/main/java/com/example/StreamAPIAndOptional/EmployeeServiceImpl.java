@@ -6,6 +6,8 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.groupingBy;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
     List<Employee> staff = new ArrayList<>(List.of(
@@ -42,9 +44,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Map<Integer, List<Employee>> All() {
-        Map<Integer, List<Employee>> all = staff.stream()
-                .collect(Collectors.toMap(Employee::getDepartment,staff::get));
-        return all;
+        return staff
+                .stream()
+                .collect(groupingBy(Employee::getDepartment));
     }
 
 }
