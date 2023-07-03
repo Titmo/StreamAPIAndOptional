@@ -13,4 +13,6 @@ public interface EmployeeService {
     ArrayList<Employee> departmentsAll(int departmentId);
 
     Map<Integer, List<Employee>> All();
+
+    Employee add(String firstName, String lastName, int salary, int departmentId);
 }

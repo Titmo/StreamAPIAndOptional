@@ -1,9 +1,9 @@
 package com.example.StreamAPIAndOptional;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
@@ -19,7 +19,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee minimumSalary(int departmentId) {
-        return  staff.stream()
+        return staff.stream()
                 .filter(d -> (d.getDepartment() == departmentId))
                 .min(Comparator.comparing(Employee::getSalary))
                 .get();
@@ -47,6 +47,17 @@ public class EmployeeServiceImpl implements EmployeeService {
         return staff
                 .stream()
                 .collect(groupingBy(Employee::getDepartment));
+    }
+
+    @Override
+    public Employee add(String firstName, String lastName, int salary, int departmentId) {
+        if (!StringUtils.isAlpha(firstName) && !StringUtils.isAlpha(lastName)) {
+            throw
+                    new RuntimeException();
+        }
+        Employee employee = new Employee(firstName, lastName, salary, departmentId);
+        staff.add(employee);
+        return employee;
     }
 
 }
